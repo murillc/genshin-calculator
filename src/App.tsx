@@ -1,25 +1,18 @@
+import { Box, Button, Flex, Heading, Link, Switch, VStack } from '@chakra-ui/react';
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Characters from './pages/Characters';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Flex width="60px" h="100%" position="fixed">
+        <HStack>
+          <Box >
+            Hello
+          </Box>
+        </HStack>
+      </Flex>
+    </>
   );
 }
 
