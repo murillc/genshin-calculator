@@ -39,17 +39,13 @@ function App() {
               </NavLink>
             </NavItem>
           </Nav>
-          <NavbarText>Hu Tao Hu Tao Hu Tao Hu Tao</NavbarText>
+          <NavbarText>With Sword Comes Shadow</NavbarText>
         </Collapse>
       </Navbar>
 
       <Switch>
-        <Route path="/characters">
-          <Characters />
-        </Route>
-
         <Route path="/">
-          <Home />
+          <Characters />
         </Route>
       </Switch>
     </div>

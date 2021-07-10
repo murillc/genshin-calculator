@@ -12,6 +12,8 @@ import {
   Col,
   Row,
 } from "reactstrap";
+import CharacterSelector from "./CharacterSelector";
+import Artifacts from "./Artifacts";
 
 export interface CharacterCardProps {
   character: string;
@@ -27,52 +29,24 @@ const CharacterCard = ({
   changeLevel,
 }: CharacterCardProps) => {
   // state = { :  }
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [levelDropdownOpen, setLevelDropdownOpen] = useState(false);
-
-  const toggle = () => setDropdownOpen((prevState) => !prevState);
-  const levelToggle = () => setLevelDropdownOpen((prevState) => !prevState);
 
   return (
     <div>
       <Container>
         <Row>
           <Col>
-            <Dropdown isOpen={dropdownOpen} toggle={toggle}>
-              <DropdownToggle caret>{character}</DropdownToggle>
-              <DropdownMenu>
-                {Object.keys(characters).map((char) => (
-                  <DropdownItem
-                    key={char}
-                    onClick={() => changeCharacter(char)}
-                  >
-                    {char}
-                  </DropdownItem>
-                ))}
-              </DropdownMenu>
-            </Dropdown>
-          </Col>
-          <Col>
-            <Dropdown isOpen={levelDropdownOpen} toggle={levelToggle}>
-              <DropdownToggle caret>{levels[level]}</DropdownToggle>
-              <DropdownMenu>
-                {Object.keys(levels).map((lvl) => (
-                  <DropdownItem key={lvl} onClick={() => changeLevel(lvl)}>
-                    {levels[lvl]}
-                  </DropdownItem>
-                ))}
-              </DropdownMenu>
-            </Dropdown>
+            <CharacterSelector
+              character={character}
+              level={level}
+              changeCharacter={changeCharacter}
+              changeLevel={changeLevel}
+            />
           </Col>
         </Row>
-        <Row>
-          <Row>
-            <Col>
-              <p>
-                <b>Base HP:</b> {characters[character].baseHP[level]}
-              </p>
-            </Col>
-          </Row>
+        <Row className="mt-3">
+          <Col>
+            <Artifacts />
+          </Col>
         </Row>
       </Container>
     </div>

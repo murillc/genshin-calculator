@@ -11,7 +11,7 @@ export interface CharactersState {}
 
 class Characters extends React.Component<CharactersProps, CharactersState> {
   state = {
-    character: "Hu Tao",
+    character: "Keqing",
     level: 0,
   };
 
@@ -41,7 +41,10 @@ class Characters extends React.Component<CharactersProps, CharactersState> {
               />
             </Col>
             <Col>
-              <Attributes />
+              <Attributes
+                character={this.state.character}
+                level={this.state.level}
+              />
             </Col>
           </Row>
         </Container>
