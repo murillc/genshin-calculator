@@ -29,26 +29,24 @@ class Characters extends React.Component<CharactersProps, CharactersState> {
 
   render() {
     return (
-      <div>
-        <Container>
-          <Row className="mt-3">
-            <Col>
-              <CharacterCard
-                character={this.state.character}
-                level={this.state.level}
-                changeCharacter={this.changeCharacter}
-                changeLevel={this.changeLevel}
-              />
-            </Col>
-            <Col>
-              <Attributes
-                character={this.state.character}
-                level={this.state.level}
-              />
-            </Col>
-          </Row>
-        </Container>
-      </div>
+      <Container>
+        <Row className="mt-3 g-0">
+          <Col sm>
+            <CharacterCard
+              character={this.state.character}
+              level={this.state.level}
+              changeCharacter={this.changeCharacter}
+              changeLevel={this.changeLevel}
+            />
+          </Col>
+          <Col sm>
+            <Attributes
+              character={this.state.character}
+              level={this.state.level}
+            />
+          </Col>
+        </Row>
+      </Container>
     );
   }
 }

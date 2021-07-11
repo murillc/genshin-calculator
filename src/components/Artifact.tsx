@@ -27,54 +27,48 @@ const Artifact: React.FunctionComponent<ArtifactProps> = () => {
   const toggleDropDown = () => setDropdownOpen(!dropdownOpen);
 
   return (
-    <div>
-      <Container>
-        <Row>
-          <Col>
-            <Card>
-              <Row className="no-gutters">
-                <Col md="4">
-                  <CardImg
-                    top
-                    width="100%"
-                    src="https://cdn.discordapp.com/emojis/769775673861996635.png?v=1"
-                    alt="Card image cap"
-                  />
-                </Col>
+    <Container className="mt-3">
+      <Card>
+        <Row className="g-2">
+          <Col md="4">
+            <CardImg
+              top
+              className="img-thumbnail"
+              src="https://cdn.discordapp.com/emojis/769775673861996635.png?v=1"
+              alt="Card image cap"
+            />
+          </Col>
 
-                <Col md="8">
-                  <CardBody>
-                    <CardTitle tag="h5">Plume of Death</CardTitle>
-                    <Row>
-                      <Col>Thundering Fury</Col>
-                      <Col>
-                        <StatSelector />
-                      </Col>
-                    </Row>
-                    <Row>
-                      <Col>
-                        <StatSelector />
-                      </Col>
-                      <Col>
-                        <StatSelector />
-                      </Col>
-                    </Row>
-                    <Row>
-                      <Col>
-                        <StatSelector />
-                      </Col>
-                      <Col>
-                        <StatSelector />
-                      </Col>
-                    </Row>
-                  </CardBody>
+          <Col md="8">
+            <CardBody>
+              <CardTitle tag="h5">Plume of Death</CardTitle>
+              <Row>
+                <Col>Thundering Fury</Col>
+                <Col>
+                  <StatSelector />
                 </Col>
               </Row>
-            </Card>
+              <Row>
+                <Col>
+                  <StatSelector />
+                </Col>
+                <Col>
+                  <StatSelector />
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <StatSelector />
+                </Col>
+                <Col>
+                  <StatSelector />
+                </Col>
+              </Row>
+            </CardBody>
           </Col>
         </Row>
-      </Container>
-    </div>
+      </Card>
+    </Container>
   );
 };
 

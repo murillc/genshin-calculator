@@ -31,25 +31,23 @@ const CharacterCard = ({
   // state = { :  }
 
   return (
-    <div>
-      <Container>
-        <Row>
-          <Col>
-            <CharacterSelector
-              character={character}
-              level={level}
-              changeCharacter={changeCharacter}
-              changeLevel={changeLevel}
-            />
-          </Col>
-        </Row>
-        <Row className="mt-3">
-          <Col>
-            <Artifacts />
-          </Col>
-        </Row>
-      </Container>
-    </div>
+    <Container>
+      <Row>
+        <Col>
+          <CharacterSelector
+            character={character}
+            level={level}
+            changeCharacter={changeCharacter}
+            changeLevel={changeLevel}
+          />
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <Artifacts />
+        </Col>
+      </Row>
+    </Container>
   );
 };
 
