@@ -1,16 +1,5 @@
 import * as React from "react";
-import { Component } from "react";
-import {
-  Button,
-  Card,
-  CardBody,
-  CardImg,
-  CardSubtitle,
-  CardText,
-  CardTitle,
-  Col,
-  Row,
-} from "reactstrap";
+import { Card, CardBody, CardText, CardTitle, Col, Row } from "reactstrap";
 
 export interface StatsDisplayProps {}
 

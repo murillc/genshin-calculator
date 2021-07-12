@@ -1,10 +1,8 @@
+import { render } from "@testing-library/react";
 import * as React from "react";
-import { Component } from "react";
 import {
-  Button,
   Card,
   CardBody,
-  CardImg,
   CardSubtitle,
   CardText,
   CardTitle,
@@ -13,41 +11,113 @@ import {
   DropdownMenu,
   DropdownToggle,
 } from "reactstrap";
+import { characters } from "../data/characters/data";
 
-import hutao from "../data/characters/hutao/hutao.png";
+export interface TalentDisplayProps {
+  character: string;
+  level: number;
+  type: number;
+  baseATK: number;
+  percentATK: number;
+  flatATK: number;
+}
 
-export interface TalentDisplayProps {}
+export interface TalentDisplayState {}
 
-const TalentDisplay: React.FunctionComponent<TalentDisplayProps> = () => {
-  const [dropdownOpen, setDropdownOpen] = React.useState(false);
-  const toggle = () => setDropdownOpen((prevState) => !prevState);
+const talentTypes = ["Normal Attack", "Elemental Skill", "Elemental Burst"];
 
-  return (
-    <Card>
-      {/* <CardImg top width="100%" src={hutao} alt="Card image cap" /> */}
-      <CardBody>
-        <CardTitle tag="h5">Starward Sword</CardTitle>
-        <CardSubtitle tag="h6" className="mb-2 text-muted">
-          Elemental Burst
-        </CardSubtitle>
-        <Dropdown isOpen={dropdownOpen} toggle={toggle}>
-          <DropdownToggle caret>Talent Lvl</DropdownToggle>
-          <DropdownMenu>
-            <DropdownItem>1</DropdownItem>
-            <DropdownItem>4</DropdownItem>
-            <DropdownItem>6</DropdownItem>
-            <DropdownItem>8</DropdownItem>
-          </DropdownMenu>
-        </Dropdown>
-        <CardText>
-          Keqing unleashes the power of lightning, dealing Electro DMG in an
-          AOE. She then blends into the shadow of her blade, striking a series
-          of thunderclap-blows to nearby opponents simultaneously that deal
-          multiple instances of Electro DMG. The final attack deals massive
-        </CardText>
-      </CardBody>
-    </Card>
-  );
+const renderTitle = (type: number, character: string) => {
+  switch (type) {
+    case 0:
+      return characters[character].talents.normal_attack.title;
+    case 1:
+      return characters[character].talents.skill.title;
+    case 2:
+      return characters[character].talents.burst.title;
+    default:
+      return "N/A";
+  }
 };
+
+const renderDescription = (type: number, character: string) => {
+  switch (type) {
+    case 0:
+      return characters[character].talents.normal_attack.description;
+    case 1:
+      return characters[character].talents.skill.description;
+    case 2:
+      return characters[character].talents.burst.description;
+    default:
+      return "N/A";
+  }
+};
+
+const calculateBaseOutgoing = (
+  ability: number,
+  baseATK: number,
+  flatATK: number,
+  percentATK: number
+) => {
+  var ATK = baseATK * (1 + percentATK) + flatATK;
+  return ATK * (ability / 100);
+};
+
+class TalentDisplay extends React.Component<
+  TalentDisplayProps,
+  TalentDisplayState
+> {
+  state = {
+    dropdownOpen: false,
+    talentLvl: 4,
+  };
+
+  toggle = () => {
+    this.setState({ dropdownOpen: !this.state.dropdownOpen });
+  };
+
+  changeLevel = (level: number) => {
+    this.setState({ talentLvl: level });
+  };
+
+  render() {
+    return (
+      <Card>
+        <CardBody>
+          <CardTitle tag="h5">
+            {renderTitle(this.props.type, this.props.character)}
+          </CardTitle>
+          <CardSubtitle tag="h6" className="mb-2 text-muted">
+            {talentTypes[this.props.type]}
+          </CardSubtitle>
+          <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+            <DropdownToggle caret>Talent {this.state.talentLvl}</DropdownToggle>
+            <DropdownMenu>
+              {Array.from(Array(10).keys()).map((num) => (
+                <DropdownItem onClick={() => this.changeLevel(num + 1)}>
+                  Level {num + 1}
+                </DropdownItem>
+              ))}
+            </DropdownMenu>
+          </Dropdown>
+
+          <CardText>
+            {calculateBaseOutgoing(
+              characters[this.props.character].normal_attack.charged[
+                this.state.talentLvl
+              ],
+              this.props.baseATK,
+              this.props.flatATK,
+              this.props.percentATK
+            )}
+          </CardText>
+
+          <CardText>
+            {renderDescription(this.props.type, this.props.character)}
+          </CardText>
+        </CardBody>
+      </Card>
+    );
+  }
+}
 
 export default TalentDisplay;

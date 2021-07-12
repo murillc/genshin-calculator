@@ -1,5 +1,4 @@
 import * as React from "react";
-import { Component } from "react";
 import Artifact from "./Artifact";
 
 export interface ArtifactsProps {}
@@ -7,11 +6,9 @@ export interface ArtifactsProps {}
 const Artifacts: React.FunctionComponent<ArtifactsProps> = () => {
   return (
     <div>
-      <Artifact />
-      <Artifact />
-      <Artifact />
-      <Artifact />
-      <Artifact />
+      {Array.from(Array(5).keys()).map((type) => (
+        <Artifact artifactType={type} />
+      ))}
     </div>
   );
 };

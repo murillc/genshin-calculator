@@ -1,43 +1,51 @@
 import * as React from "react";
-import { Component } from "react";
 import {
-  Col,
-  Container,
   DropdownItem,
   DropdownMenu,
   DropdownToggle,
   Input,
   InputGroup,
   InputGroupButtonDropdown,
-  Row,
 } from "reactstrap";
 
-export interface StatSelectorProps {}
+export interface StatSelectorProps {
+  staticSelect: boolean;
+  stat: string;
+}
 
-const StatSelector: React.FunctionComponent<StatSelectorProps> = () => {
+const stats = [
+  "HP",
+  "ATK",
+  "DEF",
+  "HP%",
+  "ATK%",
+  "DEF%",
+  "Elemental Mastery",
+  "Energy Recharge%",
+  "CRIT Rate%",
+  "CRIT DMG%",
+];
+
+const StatSelector = ({ staticSelect, stat }: StatSelectorProps) => {
   const [dropdownOpen, setDropdownOpen] = React.useState(false);
   const toggleDropDown = () => setDropdownOpen(!dropdownOpen);
 
   return (
-    <div>
-      <InputGroup>
-        <InputGroupButtonDropdown
-          addonType="prepend"
-          isOpen={dropdownOpen}
-          toggle={toggleDropDown}
-        >
-          <DropdownToggle caret>HP</DropdownToggle>
-          <DropdownMenu>
-            <DropdownItem header>Header</DropdownItem>
-            <DropdownItem disabled>Action</DropdownItem>
-            <DropdownItem>Another Action</DropdownItem>
-            <DropdownItem divider />
-            <DropdownItem>Another Action</DropdownItem>
-          </DropdownMenu>
-        </InputGroupButtonDropdown>
-        <Input />
-      </InputGroup>
-    </div>
+    <InputGroup>
+      <InputGroupButtonDropdown
+        addonType="prepend"
+        isOpen={dropdownOpen}
+        toggle={toggleDropDown}
+      >
+        <DropdownToggle caret>{stat}</DropdownToggle>
+        <DropdownMenu>
+          {stats.map((item) => (
+            <DropdownItem>{item}</DropdownItem>
+          ))}
+        </DropdownMenu>
+      </InputGroupButtonDropdown>
+      <Input />
+    </InputGroup>
   );
 };
 

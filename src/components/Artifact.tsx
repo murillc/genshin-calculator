@@ -1,33 +1,33 @@
 import * as React from "react";
-import { Component } from "react";
 import {
-  Button,
   Card,
   CardBody,
   CardImg,
-  CardSubtitle,
-  CardText,
   CardTitle,
   Col,
   Container,
-  DropdownItem,
-  DropdownMenu,
-  DropdownToggle,
-  Input,
-  InputGroup,
-  InputGroupButtonDropdown,
   Row,
 } from "reactstrap";
+import SetSelector from "./SetSelector";
 import StatSelector from "./StatSelector";
 
-export interface ArtifactProps {}
+export interface ArtifactProps {
+  artifactType: number;
+}
 
-const Artifact: React.FunctionComponent<ArtifactProps> = () => {
-  const [dropdownOpen, setDropdownOpen] = React.useState(false);
-  const toggleDropDown = () => setDropdownOpen(!dropdownOpen);
+const artifactTypes = [
+  "Flower of Life",
+  "Plume of Death",
+  "Sands of Eon",
+  "Goblet of Eonothem",
+  "Circlet of Logos",
+];
 
+const Artifact: React.FunctionComponent<ArtifactProps> = ({
+  artifactType,
+}: ArtifactProps) => {
   return (
-    <Container className="mt-3">
+    <Container className="mt-3 g-0">
       <Card>
         <Row className="g-2">
           <Col md="4">
@@ -35,34 +35,34 @@ const Artifact: React.FunctionComponent<ArtifactProps> = () => {
               top
               className="img-thumbnail"
               src="https://cdn.discordapp.com/emojis/769775673861996635.png?v=1"
-              alt="Card image cap"
+              alt="yeah"
             />
           </Col>
 
           <Col md="8">
             <CardBody>
-              <CardTitle tag="h5">Plume of Death</CardTitle>
+              <CardTitle tag="h5">{artifactTypes[artifactType]}</CardTitle>
               <Row>
-                <Col>Thundering Fury</Col>
                 <Col>
-                  <StatSelector />
+                  <SetSelector set="Thundering Fury" />
+                </Col>
+                <Col>
+                  <StatSelector staticSelect={false} stat="HP" />
                 </Col>
               </Row>
-              <Row>
-                <Col>
-                  <StatSelector />
-                </Col>
-                <Col>
-                  <StatSelector />
-                </Col>
+              <Row className="mt-2">
+                {Array.from(Array(2).keys()).map((key) => (
+                  <Col>
+                    <StatSelector staticSelect={false} stat="HP" />
+                  </Col>
+                ))}
               </Row>
-              <Row>
-                <Col>
-                  <StatSelector />
-                </Col>
-                <Col>
-                  <StatSelector />
-                </Col>
+              <Row className="mt-2">
+                {Array.from(Array(2).keys()).map((key) => (
+                  <Col>
+                    <StatSelector staticSelect={false} stat="HP" />
+                  </Col>
+                ))}
               </Row>
             </CardBody>
           </Col>

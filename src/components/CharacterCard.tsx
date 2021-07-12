@@ -1,33 +1,23 @@
-import * as React from "react";
-import { Component, useState } from "react";
+// import * as React from "react";
+// import { Component, useState } from "react";
 
-import { characters, levels } from "../data/characters/data";
+// import { characters, levels } from "../data/characters/data";
 
-import {
-  Dropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  Container,
-  Col,
-  Row,
-} from "reactstrap";
+import { Container, Col, Row } from "reactstrap";
 import CharacterSelector from "./CharacterSelector";
 import Artifacts from "./Artifacts";
+import SetBonusSelector from "./SetBonusSelector";
 
 export interface CharacterCardProps {
   character: string;
   level: number;
+  weapon: string;
+  wepLevel: number;
   changeCharacter: any;
   changeLevel: any;
 }
 
-const CharacterCard = ({
-  character,
-  level,
-  changeCharacter,
-  changeLevel,
-}: CharacterCardProps) => {
+const CharacterCard = (props: CharacterCardProps) => {
   // state = { :  }
 
   return (
@@ -35,11 +25,18 @@ const CharacterCard = ({
       <Row>
         <Col>
           <CharacterSelector
-            character={character}
-            level={level}
-            changeCharacter={changeCharacter}
-            changeLevel={changeLevel}
+            character={props.character}
+            level={props.level}
+            weapon={props.weapon}
+            wepLevel={props.wepLevel}
+            changeCharacter={props.changeCharacter}
+            changeLevel={props.changeLevel}
           />
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <SetBonusSelector />
         </Col>
       </Row>
       <Row>

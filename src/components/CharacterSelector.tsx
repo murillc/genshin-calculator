@@ -1,19 +1,21 @@
 import * as React from "react";
-import { Component, useState } from "react";
+import { useState } from "react";
 import {
+  ButtonDropdown,
   Col,
   Container,
-  Dropdown,
   DropdownItem,
   DropdownMenu,
   DropdownToggle,
   Row,
 } from "reactstrap";
-import { characters, levels } from "../data/characters/data";
+import { characters, levels, weapons } from "../data/characters/data";
 
 export interface CharacterSelectorProps {
   character: string;
   level: number;
+  weapon: string;
+  wepLevel: number;
   changeCharacter: any;
   changeLevel: any;
 }
@@ -21,6 +23,8 @@ export interface CharacterSelectorProps {
 const CharacterSelector: React.FunctionComponent<CharacterSelectorProps> = ({
   character,
   level,
+  weapon,
+  wepLevel,
   changeCharacter,
   changeLevel,
 }: CharacterSelectorProps) => {
@@ -38,10 +42,10 @@ const CharacterSelector: React.FunctionComponent<CharacterSelectorProps> = ({
 
   return (
     <div>
-      <Container>
+      <Container className="g-0">
         <Row>
           <Col>
-            <Dropdown isOpen={dropdownOpen} toggle={toggle}>
+            <ButtonDropdown isOpen={dropdownOpen} toggle={toggle}>
               <DropdownToggle caret>{character}</DropdownToggle>
               <DropdownMenu>
                 {Object.keys(characters).map((char) => (
@@ -53,11 +57,8 @@ const CharacterSelector: React.FunctionComponent<CharacterSelectorProps> = ({
                   </DropdownItem>
                 ))}
               </DropdownMenu>
-            </Dropdown>
-          </Col>
-
-          <Col>
-            <Dropdown isOpen={levelDropdownOpen} toggle={levelToggle}>
+            </ButtonDropdown>
+            <ButtonDropdown isOpen={levelDropdownOpen} toggle={levelToggle}>
               <DropdownToggle caret>{levels[level]}</DropdownToggle>
               <DropdownMenu>
                 {levels.map((lvl, index) => (
@@ -66,27 +67,26 @@ const CharacterSelector: React.FunctionComponent<CharacterSelectorProps> = ({
                   </DropdownItem>
                 ))}
               </DropdownMenu>
-            </Dropdown>
+            </ButtonDropdown>
           </Col>
 
           <Col>
-            <Dropdown isOpen={wepDropdownOpen} toggle={wepToggle}>
-              <DropdownToggle caret>Weapons</DropdownToggle>
+            <ButtonDropdown isOpen={wepDropdownOpen} toggle={wepToggle}>
+              <DropdownToggle caret>{weapon}</DropdownToggle>
               <DropdownMenu>
-                <DropdownItem>Primordial Jade Cutter</DropdownItem>
-                <DropdownItem>The Black Sword</DropdownItem>
+                {Object.keys(weapons).map((weapon: string) => (
+                  <DropdownItem key={weapon}>{weapon}</DropdownItem>
+                ))}
               </DropdownMenu>
-            </Dropdown>
-          </Col>
-
-          <Col>
-            <Dropdown isOpen={wepLvlDropdownOpen} toggle={wepLvlToggle}>
-              <DropdownToggle caret>Lvl</DropdownToggle>
+            </ButtonDropdown>
+            <ButtonDropdown isOpen={wepLvlDropdownOpen} toggle={wepLvlToggle}>
+              <DropdownToggle caret>{levels[wepLevel]}</DropdownToggle>
               <DropdownMenu>
-                <DropdownItem>1</DropdownItem>
-                <DropdownItem>90</DropdownItem>
+                {levels.map((lvl, index) => (
+                  <DropdownItem>{levels[index]}</DropdownItem>
+                ))}
               </DropdownMenu>
-            </Dropdown>
+            </ButtonDropdown>
           </Col>
         </Row>
       </Container>

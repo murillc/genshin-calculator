@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import * as React from "react";
 import {
   Collapse,
   Navbar,
@@ -12,11 +12,10 @@ import {
 
 import { Switch, Route } from "react-router-dom";
 
-import Home from "./pages/Home";
 import Characters from "./pages/Characters";
 
 function App() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = React.useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
 
