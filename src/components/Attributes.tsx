@@ -2,7 +2,6 @@ import * as React from "react";
 import { Component } from "react";
 
 import { Container, Row, Col } from "reactstrap";
-import { characters } from "../data/characters/data";
 import StatsDisplay from "./StatsDisplay";
 import TalentDisplay from "./TalentDisplay";
 

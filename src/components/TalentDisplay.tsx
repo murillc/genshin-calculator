@@ -1,4 +1,3 @@
-import { render } from "@testing-library/react";
 import * as React from "react";
 import {
   Card,
@@ -10,8 +9,10 @@ import {
   DropdownItem,
   DropdownMenu,
   DropdownToggle,
+  ListGroup,
 } from "reactstrap";
 import { characters } from "../data/characters/data";
+import DamageDisplay from "./DamageDisplay";
 
 export interface TalentDisplayProps {
   character: string;
@@ -52,14 +53,41 @@ const renderDescription = (type: number, character: string) => {
   }
 };
 
-const calculateBaseOutgoing = (
-  ability: number,
-  baseATK: number,
-  flatATK: number,
-  percentATK: number
-) => {
-  var ATK = baseATK * (1 + percentATK) + flatATK;
-  return ATK * (ability / 100);
+const renderSkill = (type: number, character: string) => {
+  switch (type) {
+    case 0:
+      return (
+        <ListGroup>
+          {Object.keys(characters[character].normal_attack).map((skill) => (
+            <DamageDisplay character={character} type={type} skill={skill} />
+          ))}
+        </ListGroup>
+      );
+    case 1:
+      return (
+        <ListGroup>
+          {Object.keys(characters[character].skill).map((skill) => (
+            <DamageDisplay character={character} type={type} skill={skill} />
+          ))}
+        </ListGroup>
+      );
+    case 2:
+      return (
+        <ListGroup>
+          {Object.keys(characters[character].burst).map((skill) => (
+            <DamageDisplay character={character} type={type} skill={skill} />
+          ))}
+        </ListGroup>
+      );
+    default:
+      return (
+        <ListGroup>
+          {Object.keys(characters[character].burst).map((skill) => (
+            <DamageDisplay character={character} type={type} skill={skill} />
+          ))}
+        </ListGroup>
+      );
+  }
 };
 
 class TalentDisplay extends React.Component<
@@ -86,10 +114,16 @@ class TalentDisplay extends React.Component<
           <CardTitle tag="h5">
             {renderTitle(this.props.type, this.props.character)}
           </CardTitle>
+
           <CardSubtitle tag="h6" className="mb-2 text-muted">
             {talentTypes[this.props.type]}
           </CardSubtitle>
-          <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+
+          <Dropdown
+            className="mb-3"
+            isOpen={this.state.dropdownOpen}
+            toggle={this.toggle}
+          >
             <DropdownToggle caret>Talent {this.state.talentLvl}</DropdownToggle>
             <DropdownMenu>
               {Array.from(Array(10).keys()).map((num) => (
@@ -100,18 +134,9 @@ class TalentDisplay extends React.Component<
             </DropdownMenu>
           </Dropdown>
 
-          <CardText>
-            {calculateBaseOutgoing(
-              characters[this.props.character].normal_attack.charged[
-                this.state.talentLvl
-              ],
-              this.props.baseATK,
-              this.props.flatATK,
-              this.props.percentATK
-            )}
-          </CardText>
+          {renderSkill(this.props.type, this.props.character)}
 
-          <CardText>
+          <CardText className="mt-3">
             {renderDescription(this.props.type, this.props.character)}
           </CardText>
         </CardBody>

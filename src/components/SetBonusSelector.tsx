@@ -1,27 +1,17 @@
 import * as React from "react";
 import {
-  Button,
   Card,
   CardBody,
-  CardImg,
-  CardSubtitle,
   CardText,
   CardTitle,
   Col,
   Container,
-  Dropdown,
-  DropdownItem,
-  DropdownMenu,
-  DropdownToggle,
   Row,
 } from "reactstrap";
 
 export interface SetBonusSelectorProps {}
 
 const SetBonusSelector = (props: SetBonusSelectorProps) => {
-  const [dropdownOpen, setDropdownOpen] = React.useState(false);
-  const toggle = () => setDropdownOpen(!dropdownOpen);
-
   return (
     <Container className="g-0">
       <Card className="mt-3">
