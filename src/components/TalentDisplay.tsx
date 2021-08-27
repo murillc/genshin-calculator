@@ -17,10 +17,8 @@ import DamageDisplay from "./DamageDisplay";
 export interface TalentDisplayProps {
   character: string;
   level: number;
-  type: number;
-  baseATK: number;
-  percentATK: number;
-  flatATK: number;
+  type: string;
+  totalATK: number;
 }
 
 export interface TalentDisplayState {}
@@ -53,43 +51,6 @@ const renderDescription = (type: number, character: string) => {
   }
 };
 
-const renderSkill = (type: number, character: string) => {
-  switch (type) {
-    case 0:
-      return (
-        <ListGroup>
-          {Object.keys(characters[character].normal_attack).map((skill) => (
-            <DamageDisplay character={character} type={type} skill={skill} />
-          ))}
-        </ListGroup>
-      );
-    case 1:
-      return (
-        <ListGroup>
-          {Object.keys(characters[character].skill).map((skill) => (
-            <DamageDisplay character={character} type={type} skill={skill} />
-          ))}
-        </ListGroup>
-      );
-    case 2:
-      return (
-        <ListGroup>
-          {Object.keys(characters[character].burst).map((skill) => (
-            <DamageDisplay character={character} type={type} skill={skill} />
-          ))}
-        </ListGroup>
-      );
-    default:
-      return (
-        <ListGroup>
-          {Object.keys(characters[character].burst).map((skill) => (
-            <DamageDisplay character={character} type={type} skill={skill} />
-          ))}
-        </ListGroup>
-      );
-  }
-};
-
 class TalentDisplay extends React.Component<
   TalentDisplayProps,
   TalentDisplayState
@@ -107,16 +68,30 @@ class TalentDisplay extends React.Component<
     this.setState({ talentLvl: level });
   };
 
+  renderSkill = (type: string, character: string, totalATK: number) => {
+    return (
+      <ListGroup>
+        {Object.keys(characters[character][type]).map((skill) => (
+          <DamageDisplay
+            character={character}
+            type={type}
+            skill={skill}
+            totalATK={totalATK}
+            talentLvl={6}
+          />
+        ))}
+      </ListGroup>
+    );
+  };
+
   render() {
     return (
       <Card>
         <CardBody>
-          <CardTitle tag="h5">
-            {renderTitle(this.props.type, this.props.character)}
-          </CardTitle>
+          <CardTitle tag="h5">{renderTitle(0, this.props.character)}</CardTitle>
 
           <CardSubtitle tag="h6" className="mb-2 text-muted">
-            {talentTypes[this.props.type]}
+            {talentTypes[0]}
           </CardSubtitle>
 
           <Dropdown
@@ -134,10 +109,14 @@ class TalentDisplay extends React.Component<
             </DropdownMenu>
           </Dropdown>
 
-          {renderSkill(this.props.type, this.props.character)}
+          {/* {renderSkill(
+            this.props.type,
+            this.props.character,
+            this.props.totalATK
+          )} */}
 
           <CardText className="mt-3">
-            {renderDescription(this.props.type, this.props.character)}
+            {renderDescription(0, this.props.character)}
           </CardText>
         </CardBody>
       </Card>

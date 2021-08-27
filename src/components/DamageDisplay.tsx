@@ -1,46 +1,62 @@
-import { BreadcrumbLink } from "@chakra-ui/react";
 import * as React from "react";
 import { ListGroupItem } from "reactstrap";
 import { characters } from "../data/characters/data";
 
 export interface DamageDisplayProps {
   character: string;
-  type: number;
+  type: string;
   skill: string;
+  totalATK: number;
+  talentLvl: number;
 }
 
 export interface DamageDisplayState {}
-
-const renderDescription = (type: number, character: string, skill: string) => {
-  var returnString = "";
-
-  returnString += skill.replace(/_/g, " ");
-  returnString += ": ";
-
-  var splitStr = returnString.toLowerCase().split(" ");
-  for (var i = 0; i < splitStr.length; i++) {
-    splitStr[i] =
-      splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);
-  }
-  returnString = splitStr.join(" ");
-
-  returnString += calculateDamage();
-
-  return returnString;
-};
-
-const calculateDamage = () => {
-  return 100;
-};
 
 class DamageDisplay extends React.Component<
   DamageDisplayProps,
   DamageDisplayState
 > {
+  renderDescription = (type: string, character: string, skill: string) => {
+    var returnString = "";
+
+    // Add space and semicolon
+    returnString += skill.replace(/_/g, " ");
+    returnString += ": ";
+
+    // turn from lower_case to Upper Case
+    var splitStr = returnString.toLowerCase().split(" ");
+    for (var i = 0; i < splitStr.length; i++) {
+      splitStr[i] =
+        splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);
+    }
+    returnString = splitStr.join(" ");
+
+    // Calculate Damage
+    returnString += this.calculateDamage(
+      this.props.totalATK,
+      this.findSkillPercent(),
+      100
+    );
+
+    return returnString;
+  };
+
+  findSkillPercent = () => {
+    return 100;
+  };
+
+  calculateDamage = (
+    totalATK: number,
+    abilityPercent: number,
+    dmgBonusPercent: number
+  ) => {
+    return ((totalATK * abilityPercent) / 100) * (1 + dmgBonusPercent / 100);
+  };
+
   render() {
     return (
       <ListGroupItem>
-        {renderDescription(
+        {this.renderDescription(
           this.props.type,
           this.props.character,
           this.props.skill

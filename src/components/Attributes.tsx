@@ -18,6 +18,14 @@ export interface AttributesProps {
 export interface AttributesState {}
 
 class Attributes extends Component<AttributesProps, AttributesState> {
+  calculateTotalATK = (
+    baseATK: number,
+    flatATK: number,
+    percentATK: number
+  ) => {
+    return baseATK * (1 + percentATK / 100) + flatATK;
+  };
+
   render() {
     return (
       <Container>
@@ -25,18 +33,42 @@ class Attributes extends Component<AttributesProps, AttributesState> {
           <StatsDisplay />
         </Row>
         <Row className="gx-3 mt-3">
-          {Array.from(Array(3).keys()).map((type) => (
-            <Col>
-              <TalentDisplay
-                character={this.props.character}
-                level={this.props.level}
-                baseATK={this.props.baseATK}
-                flatATK={this.props.flatATK}
-                percentATK={this.props.percentATK}
-                type={type}
-              />
-            </Col>
-          ))}
+          <Col>
+            <TalentDisplay
+              character={this.props.character}
+              level={this.props.level}
+              totalATK={this.calculateTotalATK(
+                this.props.baseATK,
+                this.props.flatATK,
+                this.props.percentATK
+              )}
+              type="normal_attack"
+            />
+          </Col>
+          <Col>
+            <TalentDisplay
+              character={this.props.character}
+              level={this.props.level}
+              totalATK={this.calculateTotalATK(
+                this.props.baseATK,
+                this.props.flatATK,
+                this.props.percentATK
+              )}
+              type="skill"
+            />
+          </Col>
+          <Col>
+            <TalentDisplay
+              character={this.props.character}
+              level={this.props.level}
+              totalATK={this.calculateTotalATK(
+                this.props.baseATK,
+                this.props.flatATK,
+                this.props.percentATK
+              )}
+              type="burst"
+            />
+          </Col>
         </Row>
       </Container>
     );

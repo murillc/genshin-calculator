@@ -6,7 +6,7 @@ export interface ArtifactsProps {}
 const Artifacts: React.FunctionComponent<ArtifactsProps> = () => {
   return (
     <div>
-      {Array.from(Array(5).keys()).map((type) => (
+      {["flower", "feather", "sands", "goblet", "circlet"].map((type) => (
         <Artifact artifactType={type} />
       ))}
     </div>

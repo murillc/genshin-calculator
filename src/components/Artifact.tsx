@@ -11,21 +11,33 @@ import {
 import SetSelector from "./SetSelector";
 import StatSelector from "./StatSelector";
 
+import sands from "../data/assets/Item_Witch's_End_Time.png";
+import feather from "../data/assets/Item_Witch's_Ever-Burning_Plume.png";
+import flower from "../data/assets/Item_Witch's_Flower_of_Blaze.png";
+import goblet from "../data/assets/Item_Witch's_Heart_Flames.png";
+import circlet from "../data/assets/Item_Witch's_Scorching_Hat.png";
+
 export interface ArtifactProps {
-  artifactType: number;
+  artifactType: string;
 }
 
-const artifactTypes = [
-  "Flower of Life",
-  "Plume of Death",
-  "Sands of Eon",
-  "Goblet of Eonothem",
-  "Circlet of Logos",
-];
+const artifactTypes: { [key: string]: string } = {
+  flower: "Flower of Life",
+  feather: "Plume of Death",
+  sands: "Sands of Eon",
+  goblet: "Goblet of Eonothem",
+  circlet: "Circlet of Logos",
+};
 
-const Artifact: React.FunctionComponent<ArtifactProps> = ({
-  artifactType,
-}: ArtifactProps) => {
+const artifactPics: { [key: string]: string } = {
+  flower: flower,
+  feather: feather,
+  sands: sands,
+  goblet: goblet,
+  circlet: circlet,
+};
+
+const Artifact = ({ artifactType }: ArtifactProps) => {
   return (
     <Container className="mt-3 g-0">
       <Card>
@@ -34,7 +46,7 @@ const Artifact: React.FunctionComponent<ArtifactProps> = ({
             <CardImg
               top
               className="img-thumbnail"
-              src="https://cdn.discordapp.com/emojis/769775673861996635.png?v=1"
+              src={artifactPics[artifactType]}
               alt="yeah"
             />
           </Col>
