@@ -32,17 +32,17 @@ class DamageDisplay extends React.Component<
     returnString = splitStr.join(" ");
 
     // Calculate Damage
-    returnString += this.calculateDamage(
-      this.props.totalATK,
-      this.findSkillPercent(),
-      100
+    returnString += Math.round(
+      this.calculateDamage(this.props.totalATK, this.findSkillPercent(), 0)
     );
 
     return returnString;
   };
 
   findSkillPercent = () => {
-    return 100;
+    return characters[this.props.character][this.props.type][this.props.skill][
+      this.props.talentLvl
+    ];
   };
 
   calculateDamage = (

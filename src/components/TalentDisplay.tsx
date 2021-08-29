@@ -25,32 +25,6 @@ export interface TalentDisplayState {}
 
 const talentTypes = ["Normal Attack", "Elemental Skill", "Elemental Burst"];
 
-const renderTitle = (type: number, character: string) => {
-  switch (type) {
-    case 0:
-      return characters[character].talents.normal_attack.title;
-    case 1:
-      return characters[character].talents.skill.title;
-    case 2:
-      return characters[character].talents.burst.title;
-    default:
-      return "N/A";
-  }
-};
-
-const renderDescription = (type: number, character: string) => {
-  switch (type) {
-    case 0:
-      return characters[character].talents.normal_attack.description;
-    case 1:
-      return characters[character].talents.skill.description;
-    case 2:
-      return characters[character].talents.burst.description;
-    default:
-      return "N/A";
-  }
-};
-
 class TalentDisplay extends React.Component<
   TalentDisplayProps,
   TalentDisplayState
@@ -88,7 +62,9 @@ class TalentDisplay extends React.Component<
     return (
       <Card>
         <CardBody>
-          <CardTitle tag="h5">{renderTitle(0, this.props.character)}</CardTitle>
+          <CardTitle tag="h5">
+            {characters[this.props.character].talents[this.props.type].title}
+          </CardTitle>
 
           <CardSubtitle tag="h6" className="mb-2 text-muted">
             {talentTypes[0]}
@@ -109,14 +85,17 @@ class TalentDisplay extends React.Component<
             </DropdownMenu>
           </Dropdown>
 
-          {/* {renderSkill(
+          {this.renderSkill(
             this.props.type,
             this.props.character,
             this.props.totalATK
-          )} */}
+          )}
 
           <CardText className="mt-3">
-            {renderDescription(0, this.props.character)}
+            {
+              characters[this.props.character].talents[this.props.type]
+                .description
+            }
           </CardText>
         </CardBody>
       </Card>
