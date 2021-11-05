@@ -29,22 +29,31 @@ export const characters: {[key: string]: any} = {
       }
     }
   },
-  "Hu Tao": {
-    baseHP: [1211, 3141, 4179, 6253, 6990, 8042, 9026, 10089, 10826, 11899, 12637, 13721, 14459, 15552],
-    baseATK: [8, 21, 29, 43, 48, 55, 62, 69, 74, 81, 86, 94, 99, 106],
-    charged: [76.8, 83.05, 89.3, 98.23, 104.48, 111.63, 121.45, 131.27, 141.09, 151.81, 162.53, 173.24, 183.96, 194.67, 205.39],
+  "Kayaka": {
+    baseHP: [1001, 2597, 3455, 5170, 5779, 6649, 7462, 8341, 8951, 9838, 10448, 11345, 11964, 12858],
+    baseATK: [27, 69, 92, 138, 154, 177, 198, 222, 238, 262, 278, 302, 318, 342],
+    normal_attack: {
+      charged: [55.13, 59.61, 64.1, 70.51, 75, 80.13, 87.18, 94.23, 101.28, 108.97, 116.66, 124.35, 132.05, 139.74, 147.43],
+    },
+    skill: {
+      skill: [239.2, 257.14, 275.08, 299, 316.94, 334.88, 358.8, 382.72, 406.64, 430.56, 454.48, 478.4, 508.3, 538.2, 568.1]
+    },
+    burst: {
+      cutting: [112.3, 120.72, 129.15, 140.38, 148.8, 157.22, 168.45, 179.68, 190.91, 202.14, 213.37, 224.6, 238.64, 252.68, 266.71],
+      bloom: [168.45, 181.08, 193.72, 210.56, 223.2, 235.83, 252.68, 269.52, 286.36, 303.21, 320.05, 336.9, 357.96, 379.01, 400.07],
+    },
     talents: {
       normal_attack: {
-        title: "Yunlai Swordsmanship",
-        description: ""
+        title: "Kayaka Attack",
+        description: "Row row row your boat"
       },
       skill: {
-        title: "Stellar Restoration",
-        description: "Hurls a Lightning Stiletto that annihilates her opponents like the swift thunder. When the Stiletto hits its target, it deals Electro DMG to opponents in a small AoE, and places a Stiletto Mark on the spot hit."
+        title: "Kayaka Skill",
+        description: "gently down the stream"
       },
       burst: {
-        title: "Starward Sword",
-        description: "Keqing unleashes the power of lightning, dealing Electro DMG in an AoE. She then blends into the shadow of her blade, striking a series of thunderclap-blows to nearby opponents simultaneously that deal multiple instances of Electro DMG. The final attack deals massive AoE Electro DMG. "
+        title: "Kayaka Burst",
+        description: "Merrily merrily merrily merrily life is but a dream"
       }
     }
   },
@@ -59,8 +68,6 @@ export const weapons = {
   "Lion's Roar": [42, 109, 135, 205, 231, 266, 292, 327, 353, 388, 414, 449, 475, 510],
   "Mistsplitter": [48, 133, 164, 261, 292, 341, 373, 423, 455, 506, 537, 590, 621, 674],
 }
-  
-
 
 export const levels = [
   "1", // 0

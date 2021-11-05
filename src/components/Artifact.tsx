@@ -37,7 +37,9 @@ const artifactPics: { [key: string]: string } = {
   circlet: circlet,
 };
 
-const Artifact = ({ artifactType }: ArtifactProps) => {
+const Artifact: React.FC<ArtifactProps> = ({ artifactType }: ArtifactProps) => {
+  const [set, changeSet] = React.useState<string>("Thundering Fury");
+
   return (
     <Container className="mt-3 g-0">
       <Card>
@@ -56,7 +58,7 @@ const Artifact = ({ artifactType }: ArtifactProps) => {
               <CardTitle tag="h5">{artifactTypes[artifactType]}</CardTitle>
               <Row>
                 <Col>
-                  <SetSelector set="Thundering Fury" />
+                  <SetSelector set={set} changeSet={changeSet} />
                 </Col>
                 <Col>
                   <StatSelector staticSelect={false} stat="HP" />

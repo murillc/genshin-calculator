@@ -23,7 +23,11 @@ export interface TalentDisplayProps {
 
 export interface TalentDisplayState {}
 
-const talentTypes = ["Normal Attack", "Elemental Skill", "Elemental Burst"];
+const talentTypes: { [key: string]: string } = {
+  normal_attack: "Normal Attack",
+  skill: "Elemental Skill",
+  burst: "Elemental Burst",
+};
 
 class TalentDisplay extends React.Component<
   TalentDisplayProps,
@@ -51,7 +55,7 @@ class TalentDisplay extends React.Component<
             type={type}
             skill={skill}
             totalATK={totalATK}
-            talentLvl={6}
+            talentLvl={this.state.talentLvl}
           />
         ))}
       </ListGroup>
@@ -67,7 +71,7 @@ class TalentDisplay extends React.Component<
           </CardTitle>
 
           <CardSubtitle tag="h6" className="mb-2 text-muted">
-            {talentTypes[0]}
+            {talentTypes[this.props.type]}
           </CardSubtitle>
 
           <Dropdown
