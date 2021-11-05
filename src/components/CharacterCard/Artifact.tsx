@@ -11,11 +11,11 @@ import {
 import SetSelector from "./SetSelector";
 import StatSelector from "./StatSelector";
 
-import sands from "../data/assets/Item_Witch's_End_Time.png";
-import feather from "../data/assets/Item_Witch's_Ever-Burning_Plume.png";
-import flower from "../data/assets/Item_Witch's_Flower_of_Blaze.png";
-import goblet from "../data/assets/Item_Witch's_Heart_Flames.png";
-import circlet from "../data/assets/Item_Witch's_Scorching_Hat.png";
+import sands from "../../data/assets/Item_Witch's_End_Time.png";
+import feather from "../../data/assets/Item_Witch's_Ever-Burning_Plume.png";
+import flower from "../../data/assets/Item_Witch's_Flower_of_Blaze.png";
+import goblet from "../../data/assets/Item_Witch's_Heart_Flames.png";
+import circlet from "../../data/assets/Item_Witch's_Scorching_Hat.png";
 
 export interface ArtifactProps {
   artifactType: string;

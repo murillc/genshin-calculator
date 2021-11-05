@@ -4,17 +4,17 @@
 // import { characters, levels } from "../data/characters/data";
 
 import { Container, Col, Row } from "reactstrap";
-import CharacterSelector from "./CharacterSelector";
-import Artifacts from "./Artifacts";
-import SetBonusSelector from "./SetBonusSelector";
+import CharacterSelector from "./CharacterCard/CharacterSelector";
+import Artifacts from "./CharacterCard/Artifacts";
+import SetBonusSelector from "./CharacterCard/SetBonusSelector";
 
 export interface CharacterCardProps {
-  character: string;
-  level: number;
-  weapon: string;
-  wepLevel: number;
-  changeCharacter: any;
-  changeLevel: any;
+  //  character: string;
+  //  level: number;
+  //  weapon: string;
+  //  wepLevel: number;
+  //  changeCharacter: any;
+  //  changeLevel: any;
 }
 
 const CharacterCard = (props: CharacterCardProps) => {
@@ -24,14 +24,7 @@ const CharacterCard = (props: CharacterCardProps) => {
     <Container>
       <Row>
         <Col>
-          <CharacterSelector
-            character={props.character}
-            level={props.level}
-            weapon={props.weapon}
-            wepLevel={props.wepLevel}
-            changeCharacter={props.changeCharacter}
-            changeLevel={props.changeLevel}
-          />
+          <CharacterSelector />
         </Col>
       </Row>
       <Row>

@@ -3,13 +3,26 @@ import { Col, Container, Row } from "reactstrap";
 import Attributes from "../components/Attributes";
 import CharacterCard from "../components/CharacterCard";
 import { useSelector } from "react-redux";
+
 export interface CharactersProps {}
 
 const Characters = () => {
   const state = useSelector((state) => state);
 
   console.log(state);
-  return null;
+
+  return (
+    <Container>
+      <Row className="mt-3 g-2">
+        <Col sm>
+          <CharacterCard />
+        </Col>
+        <Col sm>
+          <Attributes />
+        </Col>
+      </Row>
+    </Container>
+  );
 };
 
 // class Characters extends React.Component<CharactersProps, CharactersState> {

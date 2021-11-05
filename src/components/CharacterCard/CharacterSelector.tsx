@@ -1,5 +1,6 @@
 import * as React from "react";
 import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import {
   ButtonDropdown,
   Col,
@@ -9,25 +10,26 @@ import {
   DropdownToggle,
   Row,
 } from "reactstrap";
-import { characters, levels, weapons } from "../data/characters/data";
+import { characters, levels, weapons } from "../../data/characters/data";
+import { RootState } from "../../app/store";
+import { updateData } from "../../app/features/character/characterSlice";
 
-export interface CharacterSelectorProps {
-  character: string;
-  level: number;
-  weapon: string;
-  wepLevel: number;
-  changeCharacter: any;
-  changeLevel: any;
-}
+const CharacterSelector = () => {
+  const character = useSelector((state: RootState) => state.character);
 
-const CharacterSelector: React.FunctionComponent<CharacterSelectorProps> = ({
-  character,
-  level,
-  weapon,
-  wepLevel,
-  changeCharacter,
-  changeLevel,
-}: CharacterSelectorProps) => {
+  const dispatch = useDispatch();
+  // character.name,
+  // character.level
+  // [name, level]
+  const handleSelectClick = (e) => {
+    const selectData = {
+      name: e.target.name,
+      val: e.target.innerText,
+    };
+    dispatch(updateData(selectData));
+    //console.log(e.target, e.target.name, e.target.innerText);
+    //  dispatch(changeName(char)
+  };
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const toggle = () => setDropdownOpen((prevState) => !prevState);
 
@@ -46,23 +48,29 @@ const CharacterSelector: React.FunctionComponent<CharacterSelectorProps> = ({
         <Row>
           <Col>
             <ButtonDropdown isOpen={dropdownOpen} toggle={toggle}>
-              <DropdownToggle caret>{character}</DropdownToggle>
+              <DropdownToggle caret>{character.character}</DropdownToggle>
               <DropdownMenu>
                 {Object.keys(characters).map((char) => (
                   <DropdownItem
+                    name="character"
                     key={char}
-                    onClick={() => changeCharacter(char)}
+                    onClick={handleSelectClick}
                   >
                     {char}
                   </DropdownItem>
                 ))}
               </DropdownMenu>
             </ButtonDropdown>
+
             <ButtonDropdown isOpen={levelDropdownOpen} toggle={levelToggle}>
-              <DropdownToggle caret>{levels[level]}</DropdownToggle>
+              <DropdownToggle caret>{character.level}</DropdownToggle>
               <DropdownMenu>
                 {levels.map((lvl, index) => (
-                  <DropdownItem key={index} onClick={() => changeLevel(index)}>
+                  <DropdownItem
+                    name="level"
+                    key={index}
+                    onClick={handleSelectClick}
+                  >
                     {levels[index]}
                   </DropdownItem>
                 ))}
@@ -72,7 +80,7 @@ const CharacterSelector: React.FunctionComponent<CharacterSelectorProps> = ({
 
           <Col>
             <ButtonDropdown isOpen={wepDropdownOpen} toggle={wepToggle}>
-              <DropdownToggle caret>{weapon}</DropdownToggle>
+              <DropdownToggle caret>{"Mistsplitter"}</DropdownToggle>
               <DropdownMenu>
                 {Object.keys(weapons).map((weapon: string) => (
                   <DropdownItem key={weapon}>{weapon}</DropdownItem>
@@ -80,7 +88,7 @@ const CharacterSelector: React.FunctionComponent<CharacterSelectorProps> = ({
               </DropdownMenu>
             </ButtonDropdown>
             <ButtonDropdown isOpen={wepLvlDropdownOpen} toggle={wepLvlToggle}>
-              <DropdownToggle caret>{levels[wepLevel]}</DropdownToggle>
+              <DropdownToggle caret>{levels[0]}</DropdownToggle>
               <DropdownMenu>
                 {levels.map((lvl, index) => (
                   <DropdownItem>{levels[index]}</DropdownItem>

@@ -1,6 +1,6 @@
 import * as React from "react";
 import { ListGroupItem } from "reactstrap";
-import { characters } from "../data/characters/data";
+import { characters } from "../../data/characters/data";
 
 export interface DamageDisplayProps {
   character: string;
