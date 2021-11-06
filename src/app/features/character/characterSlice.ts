@@ -5,7 +5,7 @@ export type CharacterWeapons =
   | "Lion's Roar"
   | "Mistsplitter";
 
-export type CharLevel = "1" | "20" | "20A" | "40" | "40A" | "50" | 
+export type Level = "1" | "20" | "20A" | "40" | "40A" | "50" | 
 "50A" | 
 "60" |
 "60A" |
@@ -19,15 +19,17 @@ export type CharLevel = "1" | "20" | "20A" | "40" | "40A" | "50" |
  
 export type CharacterState = {
   character: string | undefined ;
-  level: CharLevel | undefined;
+  level: Level | undefined;
   weapon: CharacterWeapons | undefined;
+  wepLevel: Level | undefined;
 };
 
 
 const initialState: CharacterState = {
     character: "Keqing",
-    level: "1",
-    weapon: undefined,
+    level: "80A",
+    weapon: "Mistsplitter",
+    wepLevel: "90",
 }
 
 const characterSlice = createSlice({
@@ -35,9 +37,8 @@ const characterSlice = createSlice({
   initialState,
   reducers: {
     updateData(state, action: PayloadAction<any>) {
-    const { payload : {name, val}} = action
+      const { payload : {name, val}} = action
       state[name] = val
-    //   state.character = action.payload
     },
   }
 

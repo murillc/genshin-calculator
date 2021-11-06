@@ -8,8 +8,8 @@ import {
   Container,
   Row,
 } from "reactstrap";
-import SetSelector from "./SetSelector";
-import StatSelector from "./StatSelector";
+import SetSelector from "./Artifact/SetSelector";
+import StatSelector from "./Artifact/StatSelector";
 
 import sands from "../../data/assets/Item_Witch's_End_Time.png";
 import feather from "../../data/assets/Item_Witch's_Ever-Burning_Plume.png";

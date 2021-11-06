@@ -1,6 +1,5 @@
 import * as React from "react";
 import { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
 import {
   ButtonDropdown,
   Col,
@@ -11,13 +10,13 @@ import {
   Row,
 } from "reactstrap";
 import { characters, levels, weapons } from "../../data/characters/data";
-import { RootState } from "../../app/store";
 import { updateData } from "../../app/features/character/characterSlice";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
 
 const CharacterSelector = () => {
-  const character = useSelector((state: RootState) => state.character);
+  const character = useAppSelector((state) => state.character);
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   // character.name,
   // character.level
   // [name, level]
@@ -80,18 +79,30 @@ const CharacterSelector = () => {
 
           <Col>
             <ButtonDropdown isOpen={wepDropdownOpen} toggle={wepToggle}>
-              <DropdownToggle caret>{"Mistsplitter"}</DropdownToggle>
+              <DropdownToggle caret>{character.weapon}</DropdownToggle>
               <DropdownMenu>
                 {Object.keys(weapons).map((weapon: string) => (
-                  <DropdownItem key={weapon}>{weapon}</DropdownItem>
+                  <DropdownItem
+                    name="weapon"
+                    key={weapon}
+                    onClick={handleSelectClick}
+                  >
+                    {weapon}
+                  </DropdownItem>
                 ))}
               </DropdownMenu>
             </ButtonDropdown>
             <ButtonDropdown isOpen={wepLvlDropdownOpen} toggle={wepLvlToggle}>
-              <DropdownToggle caret>{levels[0]}</DropdownToggle>
+              <DropdownToggle caret>{character.wepLevel}</DropdownToggle>
               <DropdownMenu>
                 {levels.map((lvl, index) => (
-                  <DropdownItem>{levels[index]}</DropdownItem>
+                  <DropdownItem
+                    name="wepLevel"
+                    key={index}
+                    onClick={handleSelectClick}
+                  >
+                    {levels[index]}
+                  </DropdownItem>
                 ))}
               </DropdownMenu>
             </ButtonDropdown>
