@@ -1,4 +1,18 @@
 
+import { Level } from "../../app/features/character/characterSlice";
+
+export type Character = {
+  name: string,
+  baseHP: {[key: Level]: number},
+  baseATK: number[],
+}
+
+export const Keqing: Character = {
+  name: "Keqing",
+  baseHP: [1020, 2646, 3521, 5268, 5889, 6776, 7604, 8500, 9121, 10025, 10647, 11561, 12182, 13103],
+  baseATK: [25, 65, 87, 130, 145, 167, 187, 209, 225, 247, 262, 285, 300, 323],
+}
+
 export const characters: {[key: string]: any} = {
   "Keqing": {
     baseHP: [1020, 2646, 3521, 5268, 5889, 6776, 7604, 8500, 9121, 10025, 10647, 11561, 12182, 13103],

@@ -1,9 +1,10 @@
 import * as React from "react";
 import { Card, CardBody, CardText, CardTitle, Col, Row } from "reactstrap";
+import { useAppSelector } from "../../app/hooks";
 
-export interface StatsDisplayProps {}
+const StatsDisplay = () => {
+  const character = useAppSelector((state) => state.character);
 
-const StatsDisplay: React.FunctionComponent<StatsDisplayProps> = () => {
   return (
     <div>
       <Card>
@@ -12,7 +13,7 @@ const StatsDisplay: React.FunctionComponent<StatsDisplayProps> = () => {
           <CardText>
             <Row>
               <Col>
-                <b>HP: </b> 1000
+                <b>HP: </b> {character.character}
                 <br />
                 <b>DEF: </b> 1000
                 <br />
