@@ -4,9 +4,11 @@ import {
     combineReducers,
 } from '@reduxjs/toolkit';
 import characterReducer from './features/character/characterSlice';
+import artifactReducer from './features/artifact/artifactSlice';
 
 const rootReducer = combineReducers({
-   character: characterReducer
+   character: characterReducer,
+   artifact: artifactReducer,
 });
 
 const store = configureStore({

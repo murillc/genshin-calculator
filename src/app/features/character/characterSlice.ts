@@ -15,8 +15,6 @@ export type Level = "1" | "20" | "20A" | "40" | "40A" | "50" |
 "80A"|
 "90";
 
-
- 
 export type CharacterState = {
   character: string | undefined ;
   level: Level | undefined;
@@ -41,8 +39,6 @@ const characterSlice = createSlice({
       state[name] = val
     },
   }
-
-
 })
 
 //const characterReducer = (state = initialState, action: Action) => {

@@ -1,5 +1,4 @@
 import * as React from "react";
-import { Component } from "react";
 
 import { Container, Row, Col } from "reactstrap";
 import StatsDisplay from "./Attributes/StatsDisplay";

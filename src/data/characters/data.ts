@@ -1,9 +1,8 @@
-
 import { Level } from "../../app/features/character/characterSlice";
 
 export type Character = {
   name: string,
-  baseHP: {[key: Level]: number},
+  baseHP: number[], 
   baseATK: number[],
 }
 
@@ -11,6 +10,12 @@ export const Keqing: Character = {
   name: "Keqing",
   baseHP: [1020, 2646, 3521, 5268, 5889, 6776, 7604, 8500, 9121, 10025, 10647, 11561, 12182, 13103],
   baseATK: [25, 65, 87, 130, 145, 167, 187, 209, 225, 247, 262, 285, 300, 323],
+}
+
+export const Kayaka: Character = {
+  name: "Kayaka",
+  baseHP: [1001, 2597, 3455, 5170, 5779, 6649, 7462, 8341, 8951, 9838, 10448, 11345, 11964, 12858],
+  baseATK: [27, 69, 92, 138, 154, 177, 198, 222, 238, 262, 278, 302, 318, 342],
 }
 
 export const characters: {[key: string]: any} = {
@@ -83,19 +88,25 @@ export const weapons = {
   "Mistsplitter": [48, 133, 164, 261, 292, 341, 373, 423, 455, 506, 537, 590, 621, 674],
 }
 
-export const levels = [
-  "1", // 0
-  "20", // 1
-  "20A", // 2
-  "40", // 3
-  "40A", // 4
-  "50", // 5
-  "50A", // 6
-  "60", // 7
-  "60A", // 8
-  "70", // 9
-  "70A", // 10
-  "80", // 11
-  "80A", // 12
-  "90", // 13
-];
+
+export const levels = {
+  "1" : 0,
+  "20" : 1,
+  "20A" : 2,
+  "40" : 3,
+  "40A" : 4,
+  "50" : 5,
+  "50A" : 6,
+  "60" : 7,
+  "60A" : 8,
+  "70" : 9,
+  "70A" : 10,
+  "80" : 11,
+  "80A" : 12,
+  "90" : 13,
+
+}
+
+export const lookUpLevelIndex = (level: Level) => {
+  return null;
+}

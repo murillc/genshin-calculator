@@ -16,6 +16,7 @@ import feather from "../../data/assets/Item_Witch's_Ever-Burning_Plume.png";
 import flower from "../../data/assets/Item_Witch's_Flower_of_Blaze.png";
 import goblet from "../../data/assets/Item_Witch's_Heart_Flames.png";
 import circlet from "../../data/assets/Item_Witch's_Scorching_Hat.png";
+import { useAppSelector } from "../../app/hooks";
 
 export interface ArtifactProps {
   artifactType: string;
@@ -37,9 +38,8 @@ const artifactPics: { [key: string]: string } = {
   circlet: circlet,
 };
 
-const Artifact: React.FC<ArtifactProps> = ({ artifactType }: ArtifactProps) => {
-  const [set, changeSet] = React.useState<string>("Thundering Fury");
-
+const Artifact = ({ artifactType }: ArtifactProps) => {
+  const artifacts = useAppSelector((state) => state.artifact.artifacts);
   return (
     <Container className="mt-3 g-0">
       <Card>
@@ -58,23 +58,32 @@ const Artifact: React.FC<ArtifactProps> = ({ artifactType }: ArtifactProps) => {
               <CardTitle tag="h5">{artifactTypes[artifactType]}</CardTitle>
               <Row>
                 <Col>
-                  <SetSelector set={set} changeSet={changeSet} />
+                  <SetSelector set={artifacts[artifactType].set} />
                 </Col>
                 <Col>
-                  <StatSelector staticSelect={false} stat="HP" />
+                  <StatSelector
+                    staticSelect={false}
+                    stat={artifacts[artifactType].statType[0]}
+                  />
                 </Col>
               </Row>
               <Row className="mt-2">
                 {Array.from(Array(2).keys()).map((key) => (
                   <Col>
-                    <StatSelector staticSelect={false} stat="HP" />
+                    <StatSelector
+                      staticSelect={false}
+                      stat={artifacts[artifactType].statType[key + 1]}
+                    />
                   </Col>
                 ))}
               </Row>
               <Row className="mt-2">
                 {Array.from(Array(2).keys()).map((key) => (
                   <Col>
-                    <StatSelector staticSelect={false} stat="HP" />
+                    <StatSelector
+                      staticSelect={false}
+                      stat={artifacts[artifactType].statType[key + 3]}
+                    />
                   </Col>
                 ))}
               </Row>

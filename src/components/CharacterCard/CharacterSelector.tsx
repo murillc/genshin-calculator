@@ -64,13 +64,13 @@ const CharacterSelector = () => {
             <ButtonDropdown isOpen={levelDropdownOpen} toggle={levelToggle}>
               <DropdownToggle caret>{character.level}</DropdownToggle>
               <DropdownMenu>
-                {levels.map((lvl, index) => (
+                {Object.keys(levels).map((lvl: string) => (
                   <DropdownItem
                     name="level"
-                    key={index}
+                    key={lvl}
                     onClick={handleSelectClick}
                   >
-                    {levels[index]}
+                    {lvl}
                   </DropdownItem>
                 ))}
               </DropdownMenu>
@@ -95,13 +95,13 @@ const CharacterSelector = () => {
             <ButtonDropdown isOpen={wepLvlDropdownOpen} toggle={wepLvlToggle}>
               <DropdownToggle caret>{character.wepLevel}</DropdownToggle>
               <DropdownMenu>
-                {levels.map((lvl, index) => (
+                {Object.keys(levels).map((lvl: string) => (
                   <DropdownItem
                     name="wepLevel"
-                    key={index}
+                    key={lvl}
                     onClick={handleSelectClick}
                   >
-                    {levels[index]}
+                    {lvl}
                   </DropdownItem>
                 ))}
               </DropdownMenu>

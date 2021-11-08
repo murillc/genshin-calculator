@@ -8,21 +8,20 @@ import {
 
 export interface SetSelectorProps {
   set: string;
-  changeSet: any;
 }
 
 const sets = ["Thundering Fury", "Crimson Witch of Flames"];
 
-const SetSelector = ({ set, changeSet }: SetSelectorProps) => {
+const SetSelector = (props: SetSelectorProps) => {
   const [dropdownOpen, setDropdownOpen] = React.useState(false);
   const toggleDropDown = () => setDropdownOpen(!dropdownOpen);
 
   return (
     <Dropdown isOpen={dropdownOpen} toggle={toggleDropDown}>
-      <DropdownToggle caret>{set}</DropdownToggle>
+      <DropdownToggle caret>{props.set}</DropdownToggle>
       <DropdownMenu>
         {sets.map((item) => (
-          <DropdownItem onClick={() => changeSet(item)}>{item}</DropdownItem>
+          <DropdownItem>{item}</DropdownItem>
         ))}
       </DropdownMenu>
     </Dropdown>
