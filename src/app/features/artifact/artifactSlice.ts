@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export type ArtifactState = {
   set: string,
@@ -56,7 +56,18 @@ const initialState: SetState = {
 const artifactSlice = createSlice({
   name: 'artifact',
   initialState,
-  reducers: {}
+  reducers: {
+    updateSet(state, action: PayloadAction<any>) {
+      const {payload: {artifactType, set}} = action
+      console.log(action);
+      state.artifacts[artifactType].set = set
+    },
+    updateStatType(state, action: PayloadAction<any>) {
+      const {payload: {artifactType, statType, index}} = action
+      state.artifacts[artifactType].statType[index] = statType
+    }
+  }
 });
 
+export const { updateSet, updateStatType } = artifactSlice.actions
 export default artifactSlice.reducer

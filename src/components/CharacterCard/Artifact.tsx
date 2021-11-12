@@ -58,12 +58,16 @@ const Artifact = ({ artifactType }: ArtifactProps) => {
               <CardTitle tag="h5">{artifactTypes[artifactType]}</CardTitle>
               <Row>
                 <Col>
-                  <SetSelector set={artifacts[artifactType].set} />
+                  <SetSelector
+                    set={artifacts[artifactType].set}
+                    type={artifactType}
+                  />
                 </Col>
                 <Col>
                   <StatSelector
-                    staticSelect={false}
+                    artifactType={artifactType}
                     stat={artifacts[artifactType].statType[0]}
+                    id={0}
                   />
                 </Col>
               </Row>
@@ -71,8 +75,9 @@ const Artifact = ({ artifactType }: ArtifactProps) => {
                 {Array.from(Array(2).keys()).map((key) => (
                   <Col>
                     <StatSelector
-                      staticSelect={false}
+                      artifactType={artifactType}
                       stat={artifacts[artifactType].statType[key + 1]}
+                      id={key + 1}
                     />
                   </Col>
                 ))}
@@ -81,8 +86,9 @@ const Artifact = ({ artifactType }: ArtifactProps) => {
                 {Array.from(Array(2).keys()).map((key) => (
                   <Col>
                     <StatSelector
-                      staticSelect={false}
+                      artifactType={artifactType}
                       stat={artifacts[artifactType].statType[key + 3]}
+                      id={key + 3}
                     />
                   </Col>
                 ))}

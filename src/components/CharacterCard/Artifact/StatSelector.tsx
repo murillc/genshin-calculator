@@ -7,10 +7,13 @@ import {
   InputGroup,
   InputGroupButtonDropdown,
 } from "reactstrap";
+import { updateStatType } from "../../../app/features/artifact/artifactSlice";
+import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 
 export interface StatSelectorProps {
-  staticSelect: boolean;
+  artifactType: string;
   stat: string;
+  id: number;
 }
 
 const stats = [
@@ -26,9 +29,12 @@ const stats = [
   "CRIT DMG%",
 ];
 
-const StatSelector = ({ staticSelect, stat }: StatSelectorProps) => {
+const StatSelector = (props: StatSelectorProps) => {
   const [dropdownOpen, setDropdownOpen] = React.useState(false);
   const toggleDropDown = () => setDropdownOpen(!dropdownOpen);
+
+  const state = useAppSelector((state) => state.artifact);
+  const dispatch = useAppDispatch();
 
   return (
     <InputGroup>
@@ -37,10 +43,22 @@ const StatSelector = ({ staticSelect, stat }: StatSelectorProps) => {
         isOpen={dropdownOpen}
         toggle={toggleDropDown}
       >
-        <DropdownToggle caret>{stat}</DropdownToggle>
+        <DropdownToggle caret>{props.stat}</DropdownToggle>
         <DropdownMenu>
           {stats.map((item) => (
-            <DropdownItem>{item}</DropdownItem>
+            <DropdownItem
+              onClick={() => {
+                dispatch(
+                  updateStatType({
+                    artifactType: props.artifactType,
+                    statType: item,
+                    index: props.id,
+                  })
+                );
+              }}
+            >
+              {item}
+            </DropdownItem>
           ))}
         </DropdownMenu>
       </InputGroupButtonDropdown>
