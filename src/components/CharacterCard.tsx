@@ -27,11 +27,11 @@ const CharacterCard = (props: CharacterCardProps) => {
           <CharacterSelector />
         </Col>
       </Row>
-      <Row>
+      {/* <Row>
         <Col>
           <SetBonusSelector />
         </Col>
-      </Row>
+      </Row> */}
       <Row>
         <Col>
           <Artifacts />

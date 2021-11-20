@@ -7,7 +7,10 @@ import {
   InputGroup,
   InputGroupButtonDropdown,
 } from "reactstrap";
-import { updateStatType } from "../../../app/features/artifact/artifactSlice";
+import artifactSlice, {
+  updateStatType,
+  updateStat,
+} from "../../../app/features/artifact/artifactSlice";
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 
 export interface StatSelectorProps {
@@ -62,7 +65,20 @@ const StatSelector = (props: StatSelectorProps) => {
           ))}
         </DropdownMenu>
       </InputGroupButtonDropdown>
-      <Input />
+
+      <Input
+        type="number"
+        value={state.artifacts[props.artifactType].stats[props.id]}
+        onChange={(e) =>
+          dispatch(
+            updateStat({
+              artifactType: props.artifactType,
+              stat: parseInt(e.target.value),
+              index: props.id,
+            })
+          )
+        }
+      />
     </InputGroup>
   );
 };

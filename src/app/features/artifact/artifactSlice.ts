@@ -52,22 +52,42 @@ const initialState: SetState = {
   },
 }
 
+type SetPayload = {
+  artifactType: string,
+  set: string,
+}
+
+type StatTypePayload = {
+  artifactType: string,
+  statType: string,
+  index: number,
+}
+
+type StatPayload = {
+  artifactType: string,
+  stat: number,
+  index: number,
+}
 
 const artifactSlice = createSlice({
   name: 'artifact',
   initialState,
   reducers: {
-    updateSet(state, action: PayloadAction<any>) {
+    updateSet(state, action: PayloadAction<SetPayload>) {
       const {payload: {artifactType, set}} = action
       console.log(action);
       state.artifacts[artifactType].set = set
     },
-    updateStatType(state, action: PayloadAction<any>) {
+    updateStatType(state, action: PayloadAction<StatTypePayload>) {
       const {payload: {artifactType, statType, index}} = action
       state.artifacts[artifactType].statType[index] = statType
+    },
+    updateStat(state, action: PayloadAction<StatPayload>) {
+      const {payload: {artifactType, stat, index}} = action
+      state.artifacts[artifactType].stats[index] = stat
     }
   }
 });
 
-export const { updateSet, updateStatType } = artifactSlice.actions
+export const { updateSet, updateStatType, updateStat} = artifactSlice.actions
 export default artifactSlice.reducer

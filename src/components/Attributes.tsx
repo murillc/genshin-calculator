@@ -22,6 +22,7 @@ const Attributes = (props: AttributesProps) => {
       <Row>
         <StatsDisplay />
       </Row>
+
       <Row className="gx-3 mt-3">
         <Col>
           <TalentDisplay />

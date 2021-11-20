@@ -1,9 +1,20 @@
 import * as React from "react";
 import { Card, CardBody, CardText, CardTitle, Col, Row } from "reactstrap";
+import {
+  ArtifactState,
+  SetState,
+} from "../../app/features/artifact/artifactSlice";
+import { CharacterState } from "../../app/features/character/characterSlice";
 import { useAppSelector } from "../../app/hooks";
+import * as data from "../../data/characters/data";
+
+const calculateTotalHP = (character: CharacterState) => {
+  const baseHP = data[character.character].baseHP[data.levels[character.level]];
+};
 
 const StatsDisplay = () => {
   const character = useAppSelector((state) => state.character);
+  const artifact = useAppSelector((state) => state.artifact);
 
   return (
     <div>
@@ -13,7 +24,8 @@ const StatsDisplay = () => {
           <CardText>
             <Row>
               <Col>
-                <b>HP: </b> {character.character}
+                <b>HP: </b>
+                {}
                 <br />
                 <b>DEF: </b> 1000
                 <br />
