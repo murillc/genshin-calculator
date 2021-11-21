@@ -107,6 +107,14 @@ export const levels = {
 
 }
 
-export const lookUpLevelIndex = (level: Level) => {
-  return null;
-}
+export type statType = 
+  "HP"|
+  "ATK"|
+  "DEF"|
+  "HP%"|
+  "ATK%"|
+  "DEF%"|
+  "Elemental Mastery"|
+  "Energy Recharge%"|
+  "CRIT Rate%"|
+  "CRIT DMG%"

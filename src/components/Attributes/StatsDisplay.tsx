@@ -7,14 +7,13 @@ import {
 import { CharacterState } from "../../app/features/character/characterSlice";
 import { useAppSelector } from "../../app/hooks";
 import * as data from "../../data/characters/data";
-
-const calculateTotalHP = (character: CharacterState) => {
-  const baseHP = data[character.character].baseHP[data.levels[character.level]];
-};
+import * as artifactUtils from "../../app/features/artifact/artifactUtils";
+import * as characterUtils from "../../app/features/character/characterUtils";
 
 const StatsDisplay = () => {
   const character = useAppSelector((state) => state.character);
-  const artifact = useAppSelector((state) => state.artifact);
+
+  const baseHP = data[character.character].baseHP[data.levels[character.level]];
 
   return (
     <div>
@@ -25,18 +24,19 @@ const StatsDisplay = () => {
             <Row>
               <Col>
                 <b>HP: </b>
-                {}
+                {characterUtils.getBaseStat("HP") +
+                  artifactUtils.sumStats("HP")}
                 <br />
-                <b>DEF: </b> 1000
+                <b>DEF: </b> {artifactUtils.sumStats("DEF")}
                 <br />
-                <b>ER: </b> 1000
+                <b>ER: </b> {artifactUtils.sumStats("Energy Recharge%")}
               </Col>
               <Col>
-                <b>ATK: </b> 1000
+                <b>ATK: </b> {artifactUtils.sumStats("ATK")}
                 <br />
-                <b>Crit Rate: </b> 1000
+                <b>Crit Rate: </b> {artifactUtils.sumStats("CRIT Rate%")}
                 <br />
-                <b>Crit Dmg: </b> 1000
+                <b>Crit Dmg: </b> {artifactUtils.sumStats("CRIT DMG%")}
               </Col>
             </Row>
           </CardText>

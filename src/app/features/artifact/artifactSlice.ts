@@ -75,7 +75,6 @@ const artifactSlice = createSlice({
   reducers: {
     updateSet(state, action: PayloadAction<SetPayload>) {
       const {payload: {artifactType, set}} = action
-      console.log(action);
       state.artifacts[artifactType].set = set
     },
     updateStatType(state, action: PayloadAction<StatTypePayload>) {

@@ -40,6 +40,7 @@ const artifactPics: { [key: string]: string } = {
 
 const Artifact = ({ artifactType }: ArtifactProps) => {
   const artifacts = useAppSelector((state) => state.artifact.artifacts);
+
   return (
     <Container className="mt-3 g-0">
       <Card>

@@ -73,7 +73,7 @@ const StatSelector = (props: StatSelectorProps) => {
           dispatch(
             updateStat({
               artifactType: props.artifactType,
-              stat: parseInt(e.target.value),
+              stat: parseFloat(e.target.value),
               index: props.id,
             })
           )

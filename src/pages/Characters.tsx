@@ -9,8 +9,6 @@ export interface CharactersProps {}
 const Characters = () => {
   const state = useSelector((state) => state);
 
-  console.log(state);
-
   return (
     <Container>
       <Row className="mt-3 g-2">
